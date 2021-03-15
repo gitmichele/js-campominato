@@ -1,28 +1,77 @@
-var gameOn = false;
 
-function allNumArr(min, max){
+function randomArr(min, max, count, arr){
 
-    var arr = [];
-    
-    for (var i=min; i<=max; i++){
+    for (i=0; i<count; i++){
 
-        arr.push(i);
-    }
+        var randNum = Math.floor(Math.random()*(max - min + 1)) + min;
+        if (arr.includes(randNum)){
 
-    return arr;
+            i--;
+        }
+        else{
+
+            arr.push(randNum);
+        }
+   };
+
+   return arr;
 };
 
-function shuffleArr(array, count){
+function getUsrGuess(arr){
 
-    for (var i = array.length - 1; i > 0; i--) {
+    var usrGuessesArr = [];
+
+
+    for (var i=0; usrGuessesArr.length<5; i++){
+        var usrNum = parseInt(prompt('Numero'));
+        console.log(usrGuessesArr);
         
-        var newIndex = Math.floor(Math.random() * (i + 1));
-        [array[i], array[newIndex]] = [array[newIndex], array[i]];
+
+        if (usrNum>0 && usrNum <=100){
+
+            if (arr.includes(usrNum)) {
+
+                console.log('perso', usrGuessesArr.length);
+                gameOn = false;
+            }
+            else if (usrGuessesArr.includes(usrNum)) {
+
+                console.log('gia messo');
+            }
+            else {
+
+                usrGuessesArr.push(usrNum)
+                console.log(usrGuessesArr.length);
+            }
+        }
+        else{
+
+            console.log('must be a number 1-100');
+        }
+
+
+
     }
 
-    return array.slice(0, count)
+    gameOn(false);
+    console.log('vinto');
+
+    return usrGuessesArr
 };
 
-var orderArr = allNumArr(1,10);
-var myArr = shuffleArr(orderArr, 4)
-console.log(myArr);
+function game(min, max, count, array){
+    gameOn = true;
+
+    while (gameOn == true){
+
+        var myArr = randomArr(min, max, count, array);
+        console.log(myArr);
+        var usrGuessesArr = getUsrGuess(myArr);
+    }
+ 
+};
+
+game(1,10,5,[])
+
+
+
