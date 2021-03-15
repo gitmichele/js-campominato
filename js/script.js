@@ -1,5 +1,7 @@
 
-function randomArr(min, max, count, arr){
+function randomArr(min, max, count){
+
+    arr = [];
 
     for (i=0; i<count; i++){
 
@@ -17,12 +19,12 @@ function randomArr(min, max, count, arr){
    return arr;
 };
 
-function getUsrGuess(arr){
+function getUsrGuess(arr, count){
 
     var usrGuessesArr = [];
 
 
-    for (var i=0; usrGuessesArr.length<5; i++){
+    for (var i=0; usrGuessesArr.length<count && gameOn == true; i++){
         var usrNum = parseInt(prompt('Numero'));
         console.log(usrGuessesArr);
         
@@ -48,30 +50,20 @@ function getUsrGuess(arr){
 
             console.log('must be a number 1-100');
         }
-
-
-
     }
 
-    gameOn = false;
-    console.log('vinto');
-
-    return usrGuessesArr
+    return gameOn
 };
 
-function game(min, max, count, array){
-    gameOn = true;
 
-    while (gameOn == true){
-
-        var myArr = randomArr(min, max, count, array);
-        console.log(myArr);
-        var usrGuessesArr = getUsrGuess(myArr);
-    }
- 
+function game(min, max, count){
+    var myArr = randomArr(min, max, count);
+    console.log(myArr);
+    var usrGuessesArr = getUsrGuess(myArr, count);
 };
 
-game(1,10,5,[])
 
-
+var gameOn = true;
+game(1, 10, 5, []);
+    
 
