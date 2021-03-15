@@ -1,69 +1,63 @@
-
-function randomArr(min, max, count){
+function startArr(min, max, count){
 
     arr = [];
 
-    for (i=0; i<count; i++){
+    for (var i = 0; i < count; i++) {
 
-        var randNum = Math.floor(Math.random()*(max - min + 1)) + min;
-        if (arr.includes(randNum)){
+        var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        if (arr.includes(randNum)) {
 
             i--;
         }
-        else{
+        else {
 
             arr.push(randNum);
         }
-   };
+    };
 
-   return arr;
+    return arr;
 };
 
-function getUsrGuess(arr, count){
+function usrGuess(array, min, max, count){
 
-    var usrGuessesArr = [];
+    var guessesCountArr = [];
 
+    for (var i = 0; guessesCountArr.length<count; i++){
 
-    for (var i=0; usrGuessesArr.length<count && gameOn == true; i++){
-        var usrNum = parseInt(prompt('Numero'));
-        console.log(usrGuessesArr);
-        
+        var usrGuess = parseInt(prompt('Numero'));
 
-        if (usrNum>0 && usrNum <=100){
+        if (usrGuess >= min && usrGuess <= max){
 
-            if (arr.includes(usrNum)) {
+            if (array.includes(usrGuess)){
 
-                console.log('perso', usrGuessesArr.length);
-                gameOn = false;
+                console.log('perso', guessesCountArr.length);
+                break
             }
-            else if (usrGuessesArr.includes(usrNum)) {
+            else if (guessesCountArr.includes(usrGuess)){
 
                 console.log('gia messo');
             }
-            else {
+            else{
 
-                usrGuessesArr.push(usrNum)
-                console.log(usrGuessesArr.length);
+                guessesCountArr.push(usrGuess);
             }
         }
         else{
-
             console.log('must be a number 1-100');
         }
     }
+}
 
-    return gameOn
+function gameOn(min, max, count) {
+
+    // var min = min;
+    // var max = max;
+    // var count = count;
+    // var startArr = ;
+    usrGuess(startArr(min, max, count),min, max, count);
+
 };
 
 
-function game(min, max, count){
-    var myArr = randomArr(min, max, count);
-    console.log(myArr);
-    var usrGuessesArr = getUsrGuess(myArr, count);
-};
-
-
-var gameOn = true;
-game(1, 10, 5, []);
-    
-
+gameOn(1,10,5);
