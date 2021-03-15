@@ -53,7 +53,7 @@ function getUsrGuess(arr){
 
     }
 
-    gameOn(false);
+    gameOn = false;
     console.log('vinto');
 
     return usrGuessesArr
