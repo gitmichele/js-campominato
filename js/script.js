@@ -67,10 +67,10 @@ function endGame(length, num){
 
 function gameOn(min, max, count, usrCount) {
 
-    var gameArr = startingArr(min, max, count);
-    console.log(gameArr);
-    var game = getGuessNum(gameArr ,min, max, usrCount);
-    endGame(game, usrCount);
+    var randArr = startingArr(min, max, count);
+    console.log(randArr);
+    var usrArrLng = getGuessNum(randArr ,min, max, usrCount);
+    endGame(usrArrLng, usrCount);
 };
 
 function switchLevel(level){
