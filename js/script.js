@@ -70,7 +70,6 @@ function gameOn(min, max, count, usrMax) {
     var gameArr = startingArr(min, max, count);
     console.log(gameArr);
     var game = getGuessNum(gameArr ,min, max, count);
-    console.log(game);
     endGame(game, usrMax);
 };
 
