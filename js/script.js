@@ -19,11 +19,11 @@ function startingArr(min, max, count){
     return arr;
 };
 
-function getGuessNum(array, min, max, count){
+function getGuessNum(array, min, max, usrCount){
 
     var guessesCountArr = [];
 
-    while (guessesCountArr.length<(max - count)){
+    while (guessesCountArr.length<usrCount){
 
         var usrGuess = parseInt(prompt('Numero'));
 
@@ -65,12 +65,12 @@ function endGame(length, num){
 
 };
 
-function gameOn(min, max, count, usrMax) {
+function gameOn(min, max, count, usrCount) {
 
     var gameArr = startingArr(min, max, count);
     console.log(gameArr);
-    var game = getGuessNum(gameArr ,min, max, count);
-    endGame(game, usrMax);
+    var game = getGuessNum(gameArr ,min, max, usrCount);
+    endGame(game, usrCount);
 };
 
 function switchLevel(level){
@@ -97,7 +97,7 @@ play.addEventListener('click', function(){
     var max = switchLevel(level);
     var min = 1;
     var count = 16;
-    var usrMax = max - count;
+    var usrCount = max - count;
 
-    gameOn(min, max, count, usrMax);
+    gameOn(min, max, count, usrCount);
 });
