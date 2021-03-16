@@ -21,9 +21,9 @@ function startingArr(min, max, count){
 
 function getGuessNum(array, min, max, usrCount){
 
-    var guessesCountArr = [];
+    var usrArr = [];
 
-    while (guessesCountArr.length<usrCount){
+    while (usrArr.length<usrCount){
 
         var usrGuess = parseInt(prompt('Numero'));
 
@@ -33,15 +33,15 @@ function getGuessNum(array, min, max, usrCount){
 
                 break
             }
-            else if (guessesCountArr.includes(usrGuess)){
+            else if (usrArr.includes(usrGuess)){
 
                 console.log('gia messo');
-                console.log(guessesCountArr, guessesCountArr.length);
+                console.log(usrArr, usrArr.length);
             }
             else{
 
-                guessesCountArr.push(usrGuess);
-                console.log(guessesCountArr, guessesCountArr.length)
+                usrArr.push(usrGuess);
+                console.log(usrArr, usrArr.length)
             }
         }
         else{
@@ -49,7 +49,7 @@ function getGuessNum(array, min, max, usrCount){
         }
     }
 
-    return (guessesCountArr.length);
+    return (usrArr.length);
 }
 
 function endGame(length, num){
