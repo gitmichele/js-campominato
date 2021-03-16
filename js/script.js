@@ -1,8 +1,9 @@
-function startingArr(min, max, count){
+// array di numeri casuali non ripetuti
+function startingArr(min, max, limit){
 
     arr = [];
 
-    for (var i = 0; i < count; i++) {
+    for (var i = 0; i < limit; i++) {
 
         var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -19,11 +20,12 @@ function startingArr(min, max, count){
     return arr;
 };
 
-function getGuessNum(array, min, max, usrCount){
+// array numeri inseriti dall'usr - torno la lunghezza
+function getGuessNum(array, min, max, limit){
 
     var usrArr = [];
 
-    while (usrArr.length<usrCount){
+    while (usrArr.length<limit){
 
         var usrGuess = parseInt(prompt('Numero'));
 
@@ -52,9 +54,10 @@ function getGuessNum(array, min, max, usrCount){
     return (usrArr.length);
 }
 
-function endGame(length, num){
+// uso la lunghezza dei numeri usr per vedere se vince/perde
+function endGame(length, limit){
 
-    if(length == num){
+    if(length == limit){
         
         console.log('vinto');
     }
@@ -65,18 +68,11 @@ function endGame(length, num){
 
 };
 
-function gameOn(min, max, count, usrCount) {
+// selezione difficoltà
+function switchLevel(num) {
 
-    var randArr = startingArr(min, max, count);
-    console.log(randArr);
-    var usrArrLng = getGuessNum(randArr ,min, max, usrCount);
-    endGame(usrArrLng, usrCount);
-};
+    switch (num) {
 
-function switchLevel(level){
-    
-    switch (level) {
-        
         case 0:
             var max = 100;
             break;
@@ -84,20 +80,30 @@ function switchLevel(level){
             var max = 80;
             break;
         case 2:
-            var max = 50;
+            var max = 5;
     };
 
     return max;
 };
 
+// unisco funzioni
+function gameOn() {
+
+    var level = parseInt(document.getElementById('level').value);
+    var gameMax = switchLevel(level);
+    var gameMin = 1;
+    var randCount = 3;
+    var usrCount = gameMax - randCount;
+
+    var randArr = startingArr(gameMin, gameMax, randCount);
+    console.log(randArr);
+    var usrArrLng = getGuessNum(randArr, gameMin, gameMax, usrCount);
+    endGame(usrArrLng, usrCount);
+};
+
+// gameOn parte al click del pulsante play
 var play = document.getElementById('play');
 play.addEventListener('click', function(){
-    
-    var level = parseInt(document.getElementById('level').value);
-    var max = switchLevel(level);
-    var min = 1;
-    var count = 16;
-    var usrCount = max - count;
 
-    gameOn(min, max, count, usrCount);
+    gameOn();
 });
