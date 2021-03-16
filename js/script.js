@@ -60,27 +60,45 @@ function endGame(length, num){
     }
     else{
 
-        console.log('perso');
+        console.log('perso', length);
     }
 
 };
 
-function gameOn() {
+function gameOn(min, max, count, usrMax) {
 
-    var min = 1;
-    var max = 5;
-    var count = 3;
-    var usrPoss = max - count;
     var gameArr = startingArr(min, max, count);
     console.log(gameArr);
     var game = getGuessNum(gameArr ,min, max, count);
     console.log(game);
-    endGame(game, usrPoss);
+    endGame(game, usrMax);
 };
 
+function switchLevel(level){
+    
+    switch (level) {
+        
+        case 0:
+            var max = 100;
+            break;
+        case 1:
+            var max = 80;
+            break;
+        case 2:
+            var max = 50;
+    };
 
-var gioca = document.getElementById('gioca');
-gioca.addEventListener('click', function(){
+    return max;
+};
 
-    gameOn();
+var play = document.getElementById('play');
+play.addEventListener('click', function(){
+    
+    var level = parseInt(document.getElementById('level').value);
+    var max = switchLevel(level);
+    var min = 1;
+    var count = 16;
+    var usrMax = max - count;
+
+    gameOn(min, max, count, usrMax);
 });
