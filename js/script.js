@@ -80,7 +80,7 @@ function switchLevel(num) {
             var max = 80;
             break;
         case 2:
-            var max = 5;
+            var max = 50;
     };
 
     return max;
@@ -92,7 +92,7 @@ function gameOn() {
     var level = parseInt(document.getElementById('level').value);
     var gameMax = switchLevel(level);
     var gameMin = 1;
-    var randCount = 3;
+    var randCount = 16;
     var usrCount = gameMax - randCount;
 
     var randArr = startingArr(gameMin, gameMax, randCount);
