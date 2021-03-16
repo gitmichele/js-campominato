@@ -1,17 +1,18 @@
 // array di numeri casuali non ripetuti
-function startingArr(min, max, limit){
+function getRandNum (min ,max){
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+function startingArr(min, max, limit) {
 
     arr = [];
 
-    for (var i = 0; i < limit; i++) {
+    while ( arr.length < limit) {
 
-        var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
+        var randNum = getRandNum(min, max)
 
-        if (arr.includes(randNum)) {
-
-            i--;
-        }
-        else {
+        if (!arr.includes(randNum)) {
 
             arr.push(randNum);
         }
@@ -21,50 +22,48 @@ function startingArr(min, max, limit){
 };
 
 // array numeri inseriti dall'usr - torno la lunghezza
-function getGuessNum(array, min, max, limit){
+function getGuessNum(array, min, max, limit) {
 
     var usrArr = [];
 
-    while (usrArr.length<limit){
+    while (usrArr.length < limit && !array.includes(usrGuess)) {
 
-        var usrGuess = parseInt(prompt('Numero'));
+     var usrGuess = parseInt(prompt('numero')) 
 
-        if (usrGuess >= min && usrGuess <= max){
+        if (usrGuess >= min && usrGuess <= max) {
 
-            if (array.includes(usrGuess)){
-
-                break
-            }
-            else if (usrArr.includes(usrGuess)){
+            if (usrArr.includes(usrGuess)) {
 
                 console.log('gia messo');
                 console.log(usrArr, usrArr.length);
             }
-            else{
+            else {
 
                 usrArr.push(usrGuess);
                 console.log(usrArr, usrArr.length)
             }
         }
-        else{
+        else {
             console.log('deve essere un numero tra min e max');
         }
     }
 
-    return (usrArr.length);
+    return (usrArr.length - 1);
 }
 
 // uso la lunghezza dei numeri usr per vedere se vince/perde
-function endGame(length, limit){
+function endGame(length, limit) {
 
-    if(length == limit){
-        
-        console.log('vinto');
-    }
-    else{
+    if (length == limit) {
 
-        console.log('perso', length);
+        document.getElementById('res').innerHTML = 'Vittoria';
     }
+    else {
+
+        document.getElementById('res').innerHTML = 'Punteggio: ' + length;
+    }
+
+    document.getElementById('play').innerHTML = 'Play again'
 
 };
 
@@ -103,7 +102,8 @@ function gameOn() {
 
 // gameOn parte al click del pulsante play
 var play = document.getElementById('play');
-play.addEventListener('click', function(){
+play.addEventListener('click', function () {
 
     gameOn();
 });
+
