@@ -1,4 +1,4 @@
-function startArr(min, max, count){
+function startingArr(min, max, count){
 
     arr = [];
 
@@ -19,11 +19,11 @@ function startArr(min, max, count){
     return arr;
 };
 
-function usrGuess(array, min, max, count){
+function getGuessNum(array, min, max, count){
 
     var guessesCountArr = [];
 
-    for (var i = 0; guessesCountArr.length<count; i++){
+    while (guessesCountArr.length<(max - count)){
 
         var usrGuess = parseInt(prompt('Numero'));
 
@@ -31,33 +31,56 @@ function usrGuess(array, min, max, count){
 
             if (array.includes(usrGuess)){
 
-                console.log('perso', guessesCountArr.length);
                 break
             }
             else if (guessesCountArr.includes(usrGuess)){
 
                 console.log('gia messo');
+                console.log(guessesCountArr, guessesCountArr.length);
             }
             else{
 
                 guessesCountArr.push(usrGuess);
+                console.log(guessesCountArr, guessesCountArr.length)
             }
         }
         else{
-            console.log('must be a number 1-100');
+            console.log('deve essere un numero tra min e max');
         }
     }
+
+    return (guessesCountArr.length);
 }
 
-function gameOn(min, max, count) {
+function endGame(length, num){
 
-    // var min = min;
-    // var max = max;
-    // var count = count;
-    // var startArr = ;
-    usrGuess(startArr(min, max, count),min, max, count);
+    if(length == num){
+        
+        console.log('vinto');
+    }
+    else{
+
+        console.log('perso');
+    }
 
 };
 
+function gameOn() {
 
-gameOn(1,10,5);
+    var min = 1;
+    var max = 5;
+    var count = 3;
+    var usrPoss = max - count;
+    var gameArr = startingArr(min, max, count);
+    console.log(gameArr);
+    var game = getGuessNum(gameArr ,min, max, count);
+    console.log(game);
+    endGame(game, usrPoss);
+};
+
+
+var gioca = document.getElementById('gioca');
+gioca.addEventListener('click', function(){
+
+    gameOn();
+});
